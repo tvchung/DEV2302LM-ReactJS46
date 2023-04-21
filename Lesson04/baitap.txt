@@ -1,0 +1,7 @@
+1. Làm lại bài demo hôm nay
+2. Xử lý khi người đùng click vào nút xem trên Student Component
+    => Hiển thị form và nút submit sẽ là "View"
+3. Xử lý khi người dụng click vào nút sử trên Student Component 
+    => Hiển thị form và nút submit là "Update"
+
+4. Khi người dùng click vào nút submit trên form thì ẩn form đi 
