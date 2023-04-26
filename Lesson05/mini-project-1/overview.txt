@@ -1,0 +1,54 @@
+// MINI PROJECT 1 - QUẢN LÝ SINH VIÊN 
+## Chức năng: 
+# Hiển thị danh sách 
+# Xem thông tin sinh viên
+# Sửa thông tin sinh viên 
+# Xóa thông tin sinh viên 
+# Thêm mới thông tin sinh viên 
+# Tìm kiếm thông tin sinh viên  (tìm kiếm nâng cao)
+# Sắp xếp 
+
+## THỰC HIỆN 
+1. Tạo ứng dụng reactjs - > chuyển function App -> sang Class App 
+2. Sử dụng https://transform.tool  => để chuyển code html sang jsx
+3. Sap chép mã jsx sang App.js 
+    - Copy thư mục css vào public
+    - Thêm liên kết css trong file index.html 
+-----------------------------------
+4. Phân chia các component
+    -App 
+        + Control
+        + ListStudent
+            + Student 
+        + Form
+    - Tách thành các component 
+5. Chức năng hiển thị dữ liệu từ mock data 
+    - App:
+        + this.state = {...}
+    - App -> props -> ListStudent -> props -> Student
+6. Ẩn hiện form (chức năng: thêm, xem, sửa)
+- render component form theo điều kiện (trạng thái ẩn / hiện)
+- tạo state isToggle trong App  có giá trị mặc định là false
+    -> khi người dùng click vào Thêm mới , xem, sửa thì cập nhật
+        isToggle = true;
+7. Xử lý chức năng hiển thị form khi click thêm mới
+- Control Component:
+    + event click -> chuyển lên App thông qua props (onToggle)
+    + trên App: tạo arrow function -> cập nhật isToggle:true
+- Xử lý phần hiển thị tên trên nút submit của form  (Save)
+8. Xử lý khi click vào nút xem trên Student Component
+- Student Component:
+    + event click -> chuyển lên ListStudent (toggle, actionName, student) -> App 
+    + App: -> From -> (Close)
+9. Xử lý chức năng sửa khi người dùng click vào edit trên Student Component
+- Student Component:
+    + event click -> chuyển lên ListStudent (toggle, actionName, student) -> App 
+    + App: -> From -> (Update)
+10. Xử lý nút submit trên form 
+- Xử lý đóng form (Close)
+- Xử lý khi pdate 
+- Xử lý khi Add (Save)
+
+11. Tìm kiếm theo tên 
+- Control Component:
+    -> keyword -> app -> search 
