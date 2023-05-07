@@ -1,0 +1,52 @@
+* Mini project 2 - Shopping Cart
+1. Tạo project - mini-project-2
+2. cd mini-project-2
+    - Cài đặt redux cho ứng dụng
+    npm install --save redux react-redux 
+3. Chuyển thiết kế từ template (Shopping_Cart_Template)
+    - transform.tool
+    - chuyển code html -> jsx
+    - copy file tài nguyên (ảnh, css, js) -> vào thư mục public của ứng dụng
+    - tạo liên kế css, js -> trong file index.html 
+4. Phân chia các component
+    4.1 -> App
+            - Title
+            - ListProduct
+                - Product 
+            - Cart
+                - CartItem
+                - CartInfor
+                - Notify
+==> 10' hoàn thiện
+5. Tổ chức cấu trúc của ứng dụng theo redux
+    - components (views)
+    - action (Xác định các action trong ứng dụng )
+    - constants (Xác định các hằng)
+    - reducers (Xác  định các reducer)
+    - store (tổ chức kho dữ liệu)
+
+6. Tạo các constants cho ứng dụng 
+    - actionTypes.js:
+        + xử lý các hằng cho các chức năng CRUD
+    - messages.js 
+        + định nghĩa các nội dung thông báo
+
+7. Phân tích và xây dựng các actions 
+    - ListProduct:  act_list_product
+    - BuyItem :     act_buy_item
+    - Update  :     act_update_item
+    - Delete   :    act_remove_item
+    - Change Notify: act_change_notify
+8. Tạo các reducer cho ứng dụng 
+    - listProduct.js => khởi tạo dữ liệu cho ListProduct
+    - notify.js => tạo reducer xử lý cho chức năng thông báo 
+    - cart.js => thông tin giỏ hàng 
+        + bổ sung constants -> localStorage => (lưu trữ giỏ hàng)
+        + BuyItem: lưu trữ dữ liệu vào localStorage (product, quantity)
+    - index.js => reducer (combine)
+9. Tạo store cho App
+
+10. Lấy dữ liệu từ store hiển thị ra ListProduct
+    - sử dụng hàm connect của redux 
+    - Tạo mapStateToProps => map dữ liệu trong store vào props của component
+    - Lấy dữ liệu từ props => hiển thị lên view
