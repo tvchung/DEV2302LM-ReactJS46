@@ -1,0 +1,1 @@
+export const LOCAL_STORAGE_NAME ="dev2302lm_rj46";
