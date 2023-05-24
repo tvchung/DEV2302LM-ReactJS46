@@ -1,6 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 
-function Control({onAddTask}) {
+function Control({onAddTask,onSearch, onSort}) {
+
+  // quản lý keywork
+  const [keyword,setKeyword] = useState('');
+
+  // chuyển dữ liệu sang App
+  const hanldeSearch=()=>{
+    onSearch(keyword)
+  }
+
+  // sắp xếp
+  const [sort, setSort] = useState('NAME-ASC');
+
+  const hanldeSort = (param)=>{
+    console.log("clicl a:",param);
+    setSort(param.toUpperCase())
+    onSort(param)
+  }
 
   const handleAddTask = ()=>{
     onAddTask(true,"Save",null);
@@ -14,9 +31,13 @@ function Control({onAddTask}) {
             type="text"
             className="form-control"
             placeholder="Search for..."
+            name="keyword"
+            value={keyword}
+            onChange={(ev)=>setKeyword(ev.target.value)}
           />
           <span className="input-group-btn">
-            <button className="btn btn-info" type="button">
+            <button className="btn btn-info" type="button" 
+              onClick={hanldeSearch}>
               Go!
             </button>
           </span>
@@ -38,28 +59,28 @@ function Control({onAddTask}) {
           </button>
           <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
             <li>
-              <a href="/#" role="button">
+              <a href="/#" role="button"  onClick={()=>hanldeSort("name-asc")}>
                 Name ASC
               </a>
             </li>
             <li>
-              <a href="/#" role="button">
+              <a href="/#" role="button" onClick={()=>hanldeSort("name-DESC")}>
                 Name DESC
               </a>
             </li>
             <li role="separator" className="divider" />
             <li>
-              <a href="/#" role="button">
+              <a href="/#" role="button" onClick={()=>hanldeSort("level-asc")}>
                 Level ASC
               </a>
             </li>
             <li>
-              <a href="/#" role="button">
+              <a href="/#" role="button" onClick={()=>hanldeSort("level-desc")}>
                 Level DESC
               </a>
             </li>
           </ul>
-          <span className="label label-success label-medium">NAME - DESC</span>
+          <span className="label label-success label-medium">{sort}</span>
         </div>
       </div>
       {/* SORT : END */}

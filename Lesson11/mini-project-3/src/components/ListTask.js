@@ -1,17 +1,21 @@
 import React from "react";
 import Task from "./Task";
 
-function ListTask({renderTasks , onEdit }) {
+function ListTask({renderTasks , onEdit,onDelete }) {
   // event edit task
   const handleEditTask = (toggle,action,task)=>{
     onEdit(toggle,action,task)
   }
-
+  // Xóa
+  const handleDelete = (task)=>{
+    onDelete(task)
+  }
   let elementTask = renderTasks.map((task,index)=>{
     return <Task key={index} 
             renderTask={task} 
             stt={index+1} 
-            onEdit={handleEditTask}/>
+            onEdit={handleEditTask}
+            onDelete={handleDelete}/>
   })
   return (
     <div className="panel panel-success">

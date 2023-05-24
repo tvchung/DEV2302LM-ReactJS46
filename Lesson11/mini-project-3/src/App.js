@@ -99,6 +99,85 @@ function App() {
       })
     }
   } //./End Submit Form
+
+  // Xóa task
+  const handleDelete = (task)=>{
+    setTasks(prev=>{
+      return prev.filter(x=>x.taskId !==task.taskId)
+    })
+  }
+
+  // xử lý tìm kiếm / lọc
+  const [dataSearch, setDataSearch] = useState([])
+  useEffect(()=>{
+    setDataSearch(tasks)
+  },[tasks])
+  const handleSearch = (data)=>{
+    if(data !==''){
+      setDataSearch(prev=>{
+        return prev.filter(x=>x.taskName.includes(data))
+      })
+    }else{
+      setDataSearch(tasks)
+    }
+  }
+  //  sort
+  const handleSort = (param)=>{
+      console.log("param:",param);
+      let arr = param.split('-');
+      console.log(arr);
+      if(arr[0]==='name'){
+        if(arr[1]==='asc'){
+          setTasks(prev=>{
+             prev.sort((a,b)=>{
+              let x = a.taskName.toLowerCase();
+              let y = b.taskName.toLowerCase();
+              if (x < y) {return -1;}
+              if (x > y) {return 1;}
+              return 0;
+            });
+            return [...prev];
+          })
+        }else{
+          setTasks(prev=>{
+            prev.sort((a,b)=>{
+             let x = a.taskName.toLowerCase();
+             let y = b.taskName.toLowerCase();
+             if (x < y) {return 1;}
+             if (x > y) {return -1;}
+             return 0;
+           });
+           return [...prev];
+         })
+        }
+      }
+
+      if(arr[0]==='level'){
+        if(arr[1]==='asc'){
+          setTasks(prev=>{
+             prev.sort((a,b)=>{
+              let x = a.level.toLowerCase();
+              let y = b.level.toLowerCase();
+              if (x < y) {return -1;}
+              if (x > y) {return 1;}
+              return 0;
+            });
+            return [...prev];
+          })
+        }else{
+          setTasks(prev=>{
+            prev.sort((a,b)=>{
+             let x = a.level.toLowerCase();
+             let y = b.level.toLowerCase();
+             if (x < y) {return 1;}
+             if (x > y) {return -1;}
+             return 0;
+           });
+           return [...prev];
+         })
+        }
+      }
+  }
   // renderForm
   const elementForm = isToggle ? <Form 
                                     onCancel={handleCancel} 
@@ -111,14 +190,19 @@ function App() {
       <Title />
       {/* TITLE : END */}
       {/* CONTROL (SEARCH + SORT + ADD) : START */}
-      <Control onAddTask={handleAddOrEditTask} />
+      <Control 
+          onAddTask={handleAddOrEditTask} 
+          onSearch={handleSearch}
+          onSort={handleSort} />
       {/* CONTROL (SEARCH + SORT + ADD) : END */}
       {/* FORM : START */}
       {/* <Form />  */}
       {elementForm}
       {/* FORM : END */}
       {/* LIST : START */}
-      <ListTask renderTasks={tasks} onEdit={handleAddOrEditTask} />
+      <ListTask renderTasks={dataSearch} 
+        onEdit={handleAddOrEditTask}
+        onDelete={handleDelete} />
     </div>
   );
 }

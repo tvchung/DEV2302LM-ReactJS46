@@ -1,8 +1,14 @@
 import React from "react";
 
-function Task({renderTask,stt,onEdit}) {
+function Task({renderTask,stt,onEdit, onDelete}) {
   const handleEditTask = (task)=>{
     onEdit(true,"Update",task)
+  }
+  // Xóa
+  const handleDelete = (task)=>{
+    if(window.confirm('Bạn có muốn xóa không?') === true){
+      onDelete(task);
+    }
   }
   let level = "";
   if(renderTask.level==="Small"){
@@ -27,7 +33,8 @@ function Task({renderTask,stt,onEdit}) {
                 onClick={()=>handleEditTask(renderTask)}>
             Edit
           </button>
-          <button type="button" className="btn btn-danger">
+          <button type="button" className="btn btn-danger"
+            onClick={()=>handleDelete(renderTask)}>
             Delete
           </button>
         </td>

@@ -1,0 +1,2 @@
+- sử dụng data trong project 1
+- code lại theo react - hook
