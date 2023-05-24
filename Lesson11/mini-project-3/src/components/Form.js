@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 
-function Form({onCancel, renderTask,onSubmit}) {
-  let initTask = {
-    taskId: 0,
-    taskName:'',
-    level: 'Medium',
-  }
-  const [task, setTask] = useState(initTask)
+function Form({actionName,renderTask,onSubmit,onCancel }) {
+  // let initTask = {
+  //   taskId: 0,
+  //   taskName:'',
+  //   level: 'Medium',
+  // }
+  console.log("Form - Edit:",renderTask);
+  const [task, setTask] = useState(renderTask)
+  // Cập nhật lại trạng thái task khi renderTask thay đổi
+  useEffect(()=>{
+    setTask(renderTask)
+  },[renderTask])
 
   const handleChange = (ev)=>{
     let name=ev.target.name;
@@ -18,8 +23,7 @@ function Form({onCancel, renderTask,onSubmit}) {
       }
     })
   }
-  useEffect (()=>{
-  })
+ 
 
   const handleSubmit = (event)=>{
     event.preventDefault();
@@ -63,7 +67,8 @@ function Form({onCancel, renderTask,onSubmit}) {
             </select>
           </div>
           <button type="submit" className="btn btn-primary">
-            Submit
+            {/* Submit */}
+            {actionName}
           </button>
           <button 
               onClick={handleCancel}

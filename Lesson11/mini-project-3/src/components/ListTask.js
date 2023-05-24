@@ -3,8 +3,8 @@ import Task from "./Task";
 
 function ListTask({renderTasks , onEdit }) {
   // event edit task
-  const handleEditTask = (toggle)=>{
-    onEdit(toggle)
+  const handleEditTask = (toggle,action,task)=>{
+    onEdit(toggle,action,task)
   }
 
   let elementTask = renderTasks.map((task,index)=>{

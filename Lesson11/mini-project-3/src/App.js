@@ -45,8 +45,13 @@ function App() {
   },[tasks])
 
   // task: add, edit
-  const [task, setTask] = useState({});
-
+  let initTask = {
+    taskId: 0,
+    taskName:"",
+    level: "Medium",
+  }
+  const [task, setTask] = useState(initTask);
+  console.log("App:",task);
   // 5.2 toggle form
   const [isToggle, setToggle] = useState(false);
 
@@ -54,34 +59,51 @@ function App() {
   const handleCancel = () => {
     setToggle(false);
   };
+  // state quản lý chức năng Thêm/ sửa
+  const [actionName, setActionName]=useState("Add")
 
-  // sự kiện add task
-  const handleAddTask = (toggle) => {
-    setToggle(toggle);
+  // sự kiện add task / Edit task => onclick trên nút AddTask của Control; Edit của Task
+  const handleAddOrEditTask = (toggle,actionName, task) => {
+    console.log("AddOrEdit:",toggle,actionName,task);
+    setToggle(toggle); // hiển thị form
+    setActionName(actionName); // Quản lý chức năng Thêm/Sửa
+    if(task!==null){
+      // console.log("if:add");
+      setTask(task); // dữ liệu render lên form trước khi sửa
+    }
   };
-  // sự kiện edit task
-  const handleEditTask = (toggle) => {
-    setToggle(toggle);
-  };
+ 
 
   // Thêm mới một task vào listtask
   const handleSubmit=(task)=>{
     // xử lý trường hợp thêm mới
-    setTasks(prev =>{
-      let taskIdAdd = prev.length<=0? 1: prev[prev.length-1].taskId +1;
-      const taskAdd = {
-        taskId:taskIdAdd,
-        taskName:task.taskName,
-        level:task.level
-      }
-
-      return [...prev,taskAdd]
-    })
-  }
+    if(actionName === "Save"){
+      setTasks(prev =>{
+        let taskIdAdd = prev.length<=0? 1: prev[prev.length-1].taskId +1;
+        const taskAdd = {
+          taskId:taskIdAdd,
+          taskName:task.taskName,
+          level:task.level
+        }
+        return [...prev,taskAdd]
+      })
+    }else{ // actionName==="Update" => Cập nhật trường hợp sửa
+      setTasks(prev =>{
+        for (let index = 0; index < prev.length; index++) {
+            if(prev[index].taskId === task.taskId){
+              prev[index] = task;
+              break;
+            }          
+        }
+        return [...prev];
+      })
+    }
+  } //./End Submit Form
   // renderForm
   const elementForm = isToggle ? <Form 
                                     onCancel={handleCancel} 
                                     onSubmit={handleSubmit}
+                                    actionName={actionName}
                                     renderTask={task} /> : "";
   return (
     <div className="container">
@@ -89,14 +111,14 @@ function App() {
       <Title />
       {/* TITLE : END */}
       {/* CONTROL (SEARCH + SORT + ADD) : START */}
-      <Control onAddTask={handleAddTask} />
+      <Control onAddTask={handleAddOrEditTask} />
       {/* CONTROL (SEARCH + SORT + ADD) : END */}
       {/* FORM : START */}
       {/* <Form />  */}
       {elementForm}
       {/* FORM : END */}
       {/* LIST : START */}
-      <ListTask renderTasks={tasks} onEdit={handleEditTask} />
+      <ListTask renderTasks={tasks} onEdit={handleAddOrEditTask} />
     </div>
   );
 }
