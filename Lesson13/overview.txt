@@ -1,0 +1,40 @@
+Làm việc với API
+I. Xây dựng API
+1. Local API  (JSON Server)
+    -  Tạo thư mục và cài đặt npm cho thư mục
+        npm init --yes
+    - Cài đặt json Server
+        npm install -g  json-server 
+    - Tạo dữ liệu (dbs.json) trong thư mục gốc
+    - Start server json:
+        + tạo start trong script file package.json 
+            "start":"json-server --watch dbs.json --port 3001"
+        + Start JSON Server
+            npm start 
+        
+2. MockAPI
+    - Online với https://mockapi.io/
+CRUD:
+
+GET: Lấy dữ liệu từ server 
+POST: Đẩy dữ liệu lên server 
+PUT: Cập nhật dữ liệu trên server 
+DELETE: xóa dữ liệu trên server 
+--------------------------------------
+GET: URL/users --> Lấy dữ liệu (tất cả) của đối tượng users 
+GET: URL/users/:id -> Lấy users theo id 
+POST: URL/users -->đẩy một đối tượng user lên server 
+PUT: URL/users/:id -> cập nhật một user 
+DELETE: URL/users/:id -> xóa 1 user 
+
+II. Sử dụng API với ReactJs 
+1. Tạo mới một project ReactJs 
+2. Cài đặt axios 
+    npm install --save axios
+    (cài đặt thêm router: npm install react-router-dom --save)
+3. Tạo các chức năng CRUD  (Users)
+    -C: Create (Tạo mới một user)
+    -R: Read (Đọc toàn bộ danh sách user)
+    -U: Update (Cập nhật 1 user)
+    -D: Delete (Xóa 1 user)
+

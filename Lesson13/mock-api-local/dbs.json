@@ -1,0 +1,31 @@
+{
+    "users":[
+        {
+            "username":"ChungTrinh",
+            "password":"1234$",
+            "status":true
+        },
+        {
+            "username":"Devmaster",
+            "password":"abc$",
+            "status":false
+        }
+    ],
+    "Students":[
+        {
+            "studentId":"SV001",
+            "studentName":"Trần Văn A",
+            "age":20
+        },
+        {
+            "studentId":"SV001",
+            "studentName":"Trần Văn B",
+            "age":22
+        },
+        {
+            "studentId":"SV001",
+            "studentName":"Trần Văn C",
+            "age":21
+        }
+    ]
+}
