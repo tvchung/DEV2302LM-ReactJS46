@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axiosUser from '../api/users'
+import axiosUser from '../api/dbs'
 function UpdateUser() {
   const [id, setId] = useState(0);
   const [username, setUserName] = useState("");

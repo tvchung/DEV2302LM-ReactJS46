@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import axiosUser from '../api/users'
+import axiosUser from '../api/dbs'
 import {useNavigate} from 'react-router-dom'
 function ListUser() {
   const [listUsers, setListUsers] = useState([]);

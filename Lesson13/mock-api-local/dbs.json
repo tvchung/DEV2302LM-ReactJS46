@@ -15,17 +15,20 @@
         {
             "studentId":"SV001",
             "studentName":"Trần Văn A",
-            "age":20
+            "age":20,
+            "avatar":"/images/tva.jpg"
         },
         {
             "studentId":"SV001",
             "studentName":"Trần Văn B",
-            "age":22
+            "age":22,
+            "avatar":"/images/tvb.jpg"
         },
         {
             "studentId":"SV001",
             "studentName":"Trần Văn C",
-            "age":21
+            "age":21,
+            "avatar":"/images/tvc.jpg"
         }
     ]
 }
